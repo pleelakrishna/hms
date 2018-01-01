@@ -1,0 +1,22 @@
+@CHARSET "ISO-8859-1";
+
+.textboxwidth80 {
+	width: 80px
+}
+
+div {
+	margin-bottom: 5px
+}
+
+.col-sm-4 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+tr:nth-child(even) {background: #eee}
+tr:nth-child(odd) {background: #FFF}

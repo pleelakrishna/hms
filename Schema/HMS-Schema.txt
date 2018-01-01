@@ -1,0 +1,171 @@
+CREATE TABLE `hms_app_group_roles` (
+  `app_role_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `app_roles_name` varchar(255) DEFAULT NULL,
+  `app_user_group_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`app_role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_billpayment_details` (
+  `BILLPAYMENT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BILLTYPE_ID` int(11) DEFAULT NULL,
+  `TREATMENT_ID` int(11) DEFAULT NULL,
+  `VALID_FROM` timestamp NULL DEFAULT NULL,
+  `VALID_TO` timestamp NULL DEFAULT NULL,
+  `AMOUNT_PAID` decimal(10,0) DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `patient_id` int(11) NOT NULL,
+  `hms_patient_PATIENT_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`BILLPAYMENT_ID`),
+  KEY `FK_s98t8ppwkyavyrui95rb5i47d` (`BILLTYPE_ID`),
+  KEY `FK_tje4glkjc0tmrcp5ywfigaj9f` (`patient_id`),
+  KEY `FK_psnlxose1s8imioa8jmi9kl4f` (`hms_patient_PATIENT_ID`),
+  CONSTRAINT `FK_psnlxose1s8imioa8jmi9kl4f` FOREIGN KEY (`hms_patient_PATIENT_ID`) REFERENCES `hms_patient` (`patient_id`),
+  CONSTRAINT `FK_s98t8ppwkyavyrui95rb5i47d` FOREIGN KEY (`BILLTYPE_ID`) REFERENCES `hms_bills_lkp` (`BILL_ID`),
+  CONSTRAINT `FK_tje4glkjc0tmrcp5ywfigaj9f` FOREIGN KEY (`patient_id`) REFERENCES `hms_patient` (`patient_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_bills_lkp` (
+  `BILL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BILL_TYPE` varchar(100) DEFAULT NULL,
+  `CREATED_ON` datetime DEFAULT NULL,
+  `CREATED_BY` varchar(100) DEFAULT NULL,
+  `LAST_MODIFIED_ON` datetime DEFAULT NULL,
+  `LAST_MODIFIED_BY` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`BILL_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_doctor` (
+  `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `qualification` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`doctor_id`),
+  KEY `FK_e9m614s7todqhy63i1lau5ppt` (`user_id`),
+  CONSTRAINT `FK_e9m614s7todqhy63i1lau5ppt` FOREIGN KEY (`user_id`) REFERENCES `hms_users` (`user_sequence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_doctor_depts_lkp` (
+  `department_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `deparment_name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`department_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_patient` (
+  `patient_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `alocholic` bit(1) DEFAULT NULL,
+  `allergic_to` varchar(255) DEFAULT NULL,
+  `blood_group` varchar(255) DEFAULT NULL,
+  `blood_pressure` bit(1) DEFAULT NULL,
+  `diabetes` bit(1) DEFAULT NULL,
+  `emergency_contact_name` varchar(255) DEFAULT NULL,
+  `emergency_contact_phone` varchar(255) DEFAULT NULL,
+  `hms_unique_id` varchar(255) NOT NULL,
+  `marital_status` varchar(255) DEFAULT NULL,
+  `previous_surgery_details` varchar(255) DEFAULT NULL,
+  `smoking` bit(1) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`patient_id`),
+  UNIQUE KEY `UK_6vw5g5u0tqs37lbhbg3uh6vfi` (`hms_unique_id`),
+  UNIQUE KEY `UK_p3fbvtp5x02aerdudo3bqrrfg` (`hms_unique_id`),
+  KEY `FK_o01n57lruc3eitu2tux8u4rth` (`user_id`),
+  CONSTRAINT `FK_o01n57lruc3eitu2tux8u4rth` FOREIGN KEY (`user_id`) REFERENCES `hms_users` (`user_sequence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_treatment_lkp` (
+  `treatment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `treatment_name` varchar(255) NOT NULL,
+  `billpayment_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`treatment_id`),
+  UNIQUE KEY `UK_p6g7lmg0df2wv0pl07mkn960j` (`treatment_name`),
+  KEY `FK_qimn8h1nbucxkgr0xenwjc0pp` (`billpayment_id`),
+  CONSTRAINT `FK_qimn8h1nbucxkgr0xenwjc0pp` FOREIGN KEY (`billpayment_id`) REFERENCES `hms_billpayment_details` (`BILLPAYMENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_users` (
+  `user_sequence_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `date_of_birth` datetime DEFAULT NULL,
+  `ipaddress` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `last_login_date` datetime DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `phone_no` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `user_login_id` varchar(255) DEFAULT NULL,
+  `user_password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_sequence_id`),
+  UNIQUE KEY `UK_3e8q3hmlnu885evx2myoigc6a` (`user_login_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hms_visit` (
+  `visit_sequence_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_modified_by` varchar(255) DEFAULT NULL,
+  `last_modified_on` datetime DEFAULT NULL,
+  `bill_id` int(11) DEFAULT NULL,
+  `date_of_visit` datetime DEFAULT NULL,
+  `doctor_sequence_id` int(11) DEFAULT NULL,
+  `purpose` varchar(255) DEFAULT NULL,
+  `treatment_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`visit_sequence_id`),
+  KEY `FK_5sqmxcoma9u3vo0j1kvg0xihl` (`patient_id`),
+  CONSTRAINT `FK_5sqmxcoma9u3vo0j1kvg0xihl` FOREIGN KEY (`patient_id`) REFERENCES `hms_patient` (`patient_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hmspatient_billdetails` (
+  `PATIENT_ID` int(11) DEFAULT NULL,
+  `BILLPAYMENT_ID` int(11) DEFAULT NULL,
+  KEY `patient_fk_idx` (`PATIENT_ID`),
+  KEY `billpayment_fk_idx` (`BILLPAYMENT_ID`),
+  CONSTRAINT `billpayment_fk` FOREIGN KEY (`BILLPAYMENT_ID`) REFERENCES `hms_billpayment_details` (`BILLPAYMENT_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `patient_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `hms_patient` (`patient_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hmspatient_bills` (
+  `PATIENT_ID` int(11) DEFAULT NULL,
+  `BILL_ID` int(11) DEFAULT NULL,
+  KEY `Patient_fk_key_idx` (`PATIENT_ID`),
+  KEY `Bill_fk_key_idx` (`BILL_ID`),
+  CONSTRAINT `Bill_fk_key` FOREIGN KEY (`BILL_ID`) REFERENCES `hms_bills_lkp` (`BILL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Patient_fk_key` FOREIGN KEY (`PATIENT_ID`) REFERENCES `hms_patient` (`patient_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `hmsusers_roles` (
+  `user_sequence_id` int(11) NOT NULL,
+  `app_role_id` int(11) NOT NULL,
+  KEY `FK_ov7khkk47usqseup79uxp7vs6` (`user_sequence_id`),
+  KEY `FK_35mffiw6j9jw6q37cauu05m1u` (`app_role_id`),
+  CONSTRAINT `FK_35mffiw6j9jw6q37cauu05m1u` FOREIGN KEY (`app_role_id`) REFERENCES `hms_app_group_roles` (`app_role_id`),
+  CONSTRAINT `FK_ov7khkk47usqseup79uxp7vs6` FOREIGN KEY (`user_sequence_id`) REFERENCES `hms_users` (`user_sequence_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

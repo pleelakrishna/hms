@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+   "jndi:/localhost/myapp/WEB-INF/dtd/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base.definition"
+		template="/WEB-INF/jsp/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+	</definition>
+	
+	<definition name="homepage" extends="base.definition">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/homepage.jsp" />
+	</definition>
+	
+	<definition name="registration" extends="base.definition">
+		<put-attribute name="title" value="RegistrationPage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/registration.jsp" />
+	</definition>
+	
+	<definition name="searchprofile" extends="base.definition">
+		<put-attribute name="title" value="SearchProfilePage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/searchprofile.jsp" />
+	</definition>
+	
+	<definition name="editprofile" extends="base.definition">
+		<put-attribute name="title" value="EditProfilePage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/editprofile.jsp" />
+	</definition>
+	
+	<definition name="deleteprofile" extends="base.definition">
+		<put-attribute name="title" value="DeleteProfilePage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/deleteprofile.jsp" />
+	</definition>
+	<definition name="createvisit" extends="base.definition">
+		<put-attribute name="title" value="CreateVisitPage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/createvisit.jsp" />
+	</definition>
+	<definition name="managevisits" extends="base.definition">
+		<put-attribute name="title" value="Vist management page" />
+		<put-attribute name="body" value="/WEB-INF/jsp/managevisits.jsp" />
+	</definition>
+	<definition name="editvisit" extends="base.definition">
+		<put-attribute name="title" value="Edit Visit page" />
+		<put-attribute name="body" value="/WEB-INF/jsp/editvisit.jsp" />
+	</definition>
+	<definition name="exception" extends="base.definition">
+		<put-attribute name="title" value="ExceptionsPage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/exception.jsp" />
+	</definition>
+		
+</tiles-definitions>

@@ -1,0 +1,177 @@
+.btn {
+	padding: 5px 20px;
+	background: #F4F4F2;
+}
+
+.btn_red {
+	background: #ED6347;
+	color: #FFF;
+}
+
+.background {
+	background: #DBFCFB;
+}
+
+.btn_blue {
+	background: #66CCFF;
+	color: #000000;
+}
+
+.btn:hover {
+	background: #E4E4E2;
+}
+
+.btn_red:hover {
+	background: #C12B05;
+}
+
+a.btn {
+	color: #666;
+	text-align: center;
+	text-decoration: none;
+}
+
+a.btn_red {
+	color: #FFF;
+}
+/* User Register Form */
+.user_register label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.col-sm-8 {
+	width: 40.0%
+}
+
+.user_register input[type="text"], .user_register input[type="email"],
+	.user_register input[type="password"] {
+	display: block;
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #DDD;
+	color: #666;
+}
+
+.user_register .form-group {
+	margin-bottom: 5px;
+}
+
+.user_register label {
+	font-weight: normal;
+	font-size: 13px;
+	padding: 5px;
+}
+
+.user_register input[type="checkbox"] {
+	float: left;
+	margin-right: 5px;
+}
+
+.user_register input[type="checkbox"]+label {
+	float: left;
+}
+
+.user_register .checkbox {
+	margin-bottom: 10px;
+	clear: both;
+	overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+	.login-div {
+		max-width: 800px;
+	}
+	.login-div .emp-logo, .user_login .emp-logo, .user_register .emp-logo {
+		height: 60px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.login-div {
+		max-width: 650px;
+	}
+	.login-div .emp-logo, .user_login .emp-logo, .user_register .emp-logo {
+		height: 55px;
+	}
+	.form-signin {
+		width: 350px; /*padding: 5px;*/
+		/* margin: 0px auto;*/
+	}
+	.form-signin h2 {
+		margin: 5px;
+		padding: 0px;
+	}
+	.login-divider {
+		background: url(custom/img/login-divider.png) no-repeat scroll 0 0
+			rgba(0, 0, 0, 0);
+		height: 215px;
+		right: 342px;
+		top: 186px;
+		width: 60px;
+		position: absolute;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	body {
+		padding-top: 40px;
+	}
+	.login-div {
+		max-width: 300px;
+	}
+	.login-div .emp-logo, .user_login .emp-logo, .user_register .emp-logo {
+		height: 55px;
+	}
+	.login-bottom-space {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		font-size: 16px;
+	}
+}
+
+.user_register .radio input[type="radio"], .user_register .radio-inline input[type="radio"],
+	.user_register .checkbox input[type="checkbox"], .user_register .checkbox-inline input[type="checkbox"]
+	{
+	float: left;
+	margin-left: -20px;
+	text-align: left;
+}
+
+.loginDiv {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	text-align: center;
+	margin-left: -273px; /*half width*/
+	margin-top: -132px; /*half height*/
+}
+
+.login-box {
+	width: 300px;
+	padding: 20px;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
+
+.accessli {
+	position: relative;
+	margin: 0 0 3px 0;
+}
+
+.colorred {
+	color: red;
+}
+
+.loginBtn {
+	width: 100px;
+	height: 35px;
+}
+
+.divHidden {
+	display: none;
+	margin-top: 20px;
+	border: 1px solid #000;
+}
